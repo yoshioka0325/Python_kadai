@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="icon" href="{{url_for('static', filename='favicon/favicon.ico')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <h1>図書管理</h1>
     <p>cssを読み込み</p>
     <img src="{{url_for('static', filename='images/1.jpg')}}">
-    <button id="alertButton">クリック</button>
-    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <button id="alertButton" class="btn btn-secondary">クリック</button>
+    <script src="{{url_for('static', filename='js/sclipt.js')}}"></script>
 </body>
 </html>
