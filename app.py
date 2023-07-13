@@ -3,6 +3,18 @@ import db
 
 app = Flask(__name__)
 
+@app.route('/book_register')
+def tosho_register():
+    return render_template('tosho_register.html')
+
+@app.route('/book_delete')
+def tosho_delete():
+    return render_template('tosho_delete.html')
+
+@app.route('/book_list')
+def tosho_list():
+    return render_template('tosho_list.html')
+
 @app.route('/', methods=['GET'])
 def index():
     msg = request.args.get('msg')
@@ -21,7 +33,11 @@ def login():
         return redirect(url_for('mypage'))
     else :
         error = 'ログインに失敗しました。'
-        return render_template('index.html', error=error)
+        input_data = {
+            'user_name':user_name,
+            'password':password
+        }
+        return render_template('index.html', error=error, data=input_data)
     
 @app.route('/mypage',methods=['GET'])
 def mypage():

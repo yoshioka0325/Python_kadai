@@ -18,8 +18,8 @@
         <p style="color:blue">{{msg}}</p>
     {% endif %}
     <form action="{{url_for('login')}}" method="post">
-        ユーザ名：<input type="text" name="username"><br>
-        パスワード:<input type="password" name="password"><br>
+        ユーザ名：<input type="text" name="username" value="{{data.user_name if data is defined else ''}}"><br>
+        パスワード:<input type="password" name="password" value="{{data.password if data is defined else ''}}"><br>
         <button type="submit">ログイン</button>
     </form>
     <a href="{{url_for('register_form')}}">新規登録</a>
