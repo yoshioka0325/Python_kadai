@@ -64,4 +64,58 @@ def login(user_name, password):
         connection.close()
         
     return flg
+
+def insert_book(name, author, publisher, isbn):
+    sql = 'INSERT INTO tosho2 (name, author, publisher, isbn) VALUES (%s, %s, %s, %s)'
+    count = 0
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        if is_book_isbn_taken(isbn):
+            count = -1
+        else:
+            cursor.execute(sql, (name, author, publisher, isbn))
+            count = cursor.rowcount
+            connection.commit()
+    except psycopg2.DatabaseError:
+        count = 0
+    finally:
+        cursor.close()
+        connection.close()
+    return count
+
+def is_book_isbn_taken(isbn):
+    sql = 'SELECT COUNT(*) FROM tosho2 WHERE isbn = %s'
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (isbn,))
+        count = cursor.fetchone()[0]
+    except psycopg2.DatabaseError:
+        count = 0
+    finally:
+        cursor.close()
+        connection.close()
+    return count > 0
         
+def delete_book(id):
+    connection = get_connection()
+    connection.cursor()
+    cursor = connection.cursor()
+    sql = 'DELETE FROM tosho2 WHERE id = %s'
+    cursor.execute(sql,(id))
+    count = cursor.rowcount
+    connection.commit()
+    cursor.close()
+    connection.close()
+    return count
+
+def select_all_books():
+    connection = get_connection()
+    cursor = connection.cursor()
+    sql = 'SELECT * FROM tosho2 ORDER BY id ASC;'
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return rows

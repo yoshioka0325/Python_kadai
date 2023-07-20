@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='#')}}">
+    <link rel="icon" href="{{url_for('static', filename='favicon/favicon.ico')}}">
     <title>Document</title>
 </head>
 <body>
-    <h1>図書一覧画面</1>
+    <h1>図書一覧画面</h1>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>図書名</th>
+            <th>著者</th>
+            <th>出版社</th>
+            <th>isbn</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for books in book %}
+        <tr>
+            <td>{{ books[0] }}</td>
+            <td>{{ books[1] }}</td>
+            <td>{{ books[2] }}</td>
+            <td>{{ books[3] }}</td>
+            <td>{{ books[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{{ url_for('mypage') }}" class="button">戻る</a>
 </body>
 </html>
